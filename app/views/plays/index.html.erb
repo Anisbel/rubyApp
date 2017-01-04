@@ -1,15 +1,5 @@
-<h1 class="current-category"><%= params[:category] %></h1>
-
-<% if @plays.count == 0 %>
-	<h3>There are no plays in this category</h3>
-<% else %>
-	<div class="row">
-		<% @plays.each do |play| %>
-			<div class="col-md-3">
-				<a href="/plays/ <%= play.id %>">
-					<%= image_tag play.play_img.url(:play_index), class: "play" %>
-				</a>
-			</div>
-		<% end %>
-	</div>
+<h1>It's up and Running!</h1>
+<% @plays.each do |play| %>
+<h2><%= link_to play.title, play_path(play) %></h2>
 <% end %>
+<%= link_to "Add Play", new_play_path %>

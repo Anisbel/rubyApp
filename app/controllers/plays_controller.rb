@@ -16,10 +16,17 @@ class PlaysController < ApplicationController
 
   def update
     @play = Play.find(params[:id])
+    if @play.update(play_params)
+      redirect_to play_path(@play)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     @play = Play.find(params[:id])
+    @play.destroy
+    redirect_to root_path
   end
 
   def new
