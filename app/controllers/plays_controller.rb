@@ -3,8 +3,13 @@ class PlaysController < ApplicationController
 
   def index
     #display  on the index page( in descendant order)
-    @plays= Play.all.order("created_at DESC")
-  end
+    if params[:category].blank?
+			@plays = Play.all.order("created_at DESC")
+		else
+			@category_id = Category.find_by(name: params[:category]).id
+			@plays = Play.where(:category_id => @category_id).order("created_at DESC")
+		end
+	end
 
   def show
     @play = Play.find(params[:id])
@@ -12,11 +17,13 @@ class PlaysController < ApplicationController
 
   def edit
     @play = Play.find(params[:id])
+    @categories = Category.all.map{|c| [c.name, c.id]}
   end
 
   def update
     @play = Play.find(params[:id])
-    if @play.update(play_params)
+    @play.category_id = params[:category_id]
+    if @play.update(plays_params)
       redirect_to play_path(@play)
     else
       render 'edit'
@@ -31,16 +38,16 @@ class PlaysController < ApplicationController
 
   def new
   #create an instance of a play that will be use in the view new.
-    @play = current_user.play.build
+    @play = current_user.plays.build
+    @categories = Category  .all.map{ |c| [c.name, c.id] }
   end
   #making sure that what is created is added to the database
   def create
-    @play = current_user.play.build(plays_params)
-
+    @play = current_user.plays.build(plays_params)
+    @play.category_id = params[:category_id]
     if @play.save
       redirect_to root_path
     else
-      #render dont refresh the page,wich will let you correct your publication
       render 'new'
     end
   end
@@ -48,6 +55,6 @@ class PlaysController < ApplicationController
   private
   #private methode that
   def plays_params
-    params.require(:play).permit(:title, :description, :director)
+    params.require(:play).permit(:title, :description, :director, :category_id)
   end
 end
