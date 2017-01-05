@@ -2,6 +2,11 @@
 <h3><%= @play.director %></h3>
  <p><%= @play.description %></p>
 
-<%= link_to "Back", root_path %>
-<%= link_to "Edit", edit_play_path(@play)%>
-<%= link_to "Delete", play_path(@play), methode: :delete, data: {confirm: "are you sure?"} %> 
+<div class="links btn-group"></div>
+  <%= if user_signed_in?%>
+    <%= if @play.ser_id == current_user.id%>
+      <%= link_to "Edit", edit_play_path(@play)%>
+      <%= link_to "Delete", play_path(@play), methode: :delete, data: {confirm: "are you sure?"} %>
+    <% end %>
+  <% end %>
+</div>
