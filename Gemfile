@@ -35,6 +35,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'coffee-script-source', '1.8.0'
 gem 'devise'
+gem 'paperclip', '~> 4.2.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
