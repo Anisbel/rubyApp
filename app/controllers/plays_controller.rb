@@ -31,11 +31,11 @@ class PlaysController < ApplicationController
 
   def new
   #create an instance of a play that will be use in the view new.
-    @play = Play.new
+    @play = current_user.play.build
   end
   #making sure that what is created is added to the database
   def create
-    @play = Play.new(plays_params)
+    @play = current_user.play.build(plays_params)
 
     if @play.save
       redirect_to root_path
