@@ -179,7 +179,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.5)
   jquery-rails
-  paperclip (~> 4.2.1)
+  paperclip (~> 4.0)
   puma (~> 3.0)
   rails (~> 5.0.1)
   sass-rails (~> 5.0)

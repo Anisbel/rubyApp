@@ -39,7 +39,7 @@ class PlaysController < ApplicationController
   def new
   #create an instance of a play that will be use in the view new.
     @play = current_user.plays.build
-    @categories = Category  .all.map{ |c| [c.name, c.id] }
+    @categories = Category.all.map{ |c| [c.name, c.id] }
   end
   #making sure that what is created is added to the database
   def create

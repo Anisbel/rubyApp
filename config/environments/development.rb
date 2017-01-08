@@ -51,7 +51,13 @@
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
+  Paperclip.options[:command_path] = "/WINDOWS/system32/"
+  Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
+  #Paperclip.options[:content_type_mappings] = { jpeg: 'image/jpeg', jpg: 'image/jpeg' }
+  #Paperclip.options[:command_path] = "C:/ImageM~1"
+  #Paperclip.options[:command_path] = 'C:/Progra~1/ImageM~1'
+  Paperclip.options[:log] = true
+  Paperclip.options[:log_command] = true
+  #Paperclip.options[:command_path] = "/usr/bin/identify"
 end
